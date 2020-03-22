@@ -12,11 +12,11 @@
 <body>
 <div class="w">
     <header>
-        <a href="${pageContext.request.contextPath }/book/queryById.action" >
-            <input type="button" οnclick="javascrtpt:window.location.href='${pageContext.request.contextPath}/book/queryById.action'" value="添加" class="btn">
+        <a href="${pageContext.request.contextPath }/book/queryById" >
+            <input type="button" οnclick="javascrtpt:window.location.href='${pageContext.request.contextPath}/book/queryById'" value="添加" class="btn">
         </a>
     </header>
-    <form action="${pageContext.request.contextPath }/book/queryList.action" method="post">
+    <form action="${pageContext.request.contextPath }/book/queryList" method="post">
         <div class="form">
             <div class="form-item">
                 <label>书名</label>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.constraints.NotNull;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,7 +16,8 @@ import java.util.List;
 @RequestMapping("book")
 public class BookController {
 
-    private BookService bookServiceImpl = new BookServiceImpl();
+    @Autowired
+    BookService bookServiceImpl;
 
     @RequestMapping("queryList")
     public ModelAndView queryList(Book book) {
@@ -30,4 +32,53 @@ public class BookController {
         modelAndView.setViewName("book/list");
         return modelAndView;
     }
+
+    @RequestMapping("insertOrUpdate")
+    public String insert(Book book) {
+        if (book.getId()!= null) {
+            bookServiceImpl.updateById(book);
+        } else {
+            bookServiceImpl.insert(book);
+        }
+        return "redirect:/book/queryList";
+    }
+
+    @RequestMapping("show")
+    public ModelAndView show(Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Book book = null;
+        try {
+            book = bookServiceImpl.queryById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        modelAndView.addObject("book",book);
+        modelAndView.setViewName("book/show");
+        return modelAndView;
+    }
+
+    @RequestMapping("queryById")
+    public ModelAndView queryById(Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (id != null) {
+            Book book = null;
+            try {
+                book = bookServiceImpl.queryById(id);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            modelAndView.addObject("book",book);
+        }
+        modelAndView.setViewName("book/book");
+        return modelAndView;
+    }
+
+    @RequestMapping("deleteById")
+    public ModelAndView deleteById(Long id) {
+        bookServiceImpl.deleteById(id);
+        Book book = new Book();
+        return queryList(book);
+    }
+
+
 }

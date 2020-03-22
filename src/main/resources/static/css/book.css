@@ -22,6 +22,7 @@ header .title{border-left:2px solid red;padding-left:10px;margin-left:20px;}
 .section {
     border-bottom: 1px solid #ccc;
     overflow: hidden;
+    padding-top: 20px;
 }
 h1{
    font-size:20px;

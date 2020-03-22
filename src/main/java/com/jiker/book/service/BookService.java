@@ -17,5 +17,6 @@ public interface BookService {
 
     void deleteById(long id);
 
+    List<Book> selectByUser(String user);
 
 }

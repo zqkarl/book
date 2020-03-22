@@ -15,4 +15,6 @@ public interface BookDao {
     public Book queryById(long id) ;
 
     public int deleteById(long id) ;
+
+    public List<Book> selectByUser(String user);
 }

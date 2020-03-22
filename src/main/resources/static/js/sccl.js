@@ -350,8 +350,8 @@ $(function(){
 						{"id":"31","name":"维护图书","parentId":"3","url":""+_appPath+"book/queryList","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"4","name":"借书与还书","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
-						{"id":"41","name":"用户借书","parentId":"4","url":""+_appPath+"jsp/frame/borrowBooks.jsp","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"42","name":"用户还书","parentId":"4","url":""+_appPath+"jsp/frame/returnBook.jsp","icon":"","order":"1","isHeader":"0","childMenus":""}
+						{"id":"41","name":"用户借书","parentId":"4","url":""+_appPath+"record/borrow","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"42","name":"用户还书","parentId":"4","url":""+_appPath+"record/return","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]}
 				]},
 				{"id":"2","name":"查询统计","parentId":"0","url":"","icon":"","order":"2","isHeader":"1","childMenus":[

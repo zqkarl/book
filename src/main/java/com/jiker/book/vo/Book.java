@@ -16,6 +16,16 @@ public class Book {
     private String location;//存放位置
     private String description;//书本详情
 
+    private Long recordId;
+
+    public Long getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
+    }
+
     public Book() {
     }
 

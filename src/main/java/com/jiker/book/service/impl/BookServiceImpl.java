@@ -5,6 +5,8 @@ import com.jiker.book.dao.impl.BookDaoImpl;
 import com.jiker.book.service.BookService;
 import com.jiker.book.util.Const;
 import com.jiker.book.vo.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,14 +15,16 @@ import java.util.List;
  * 则业务逻辑层需要调用数据访问层的相关方法实现与数据库的交互，
  * 对于一些不需要与数据库进行交互的，则直接编写业务代码，将执行结果反馈给控制层即可
  */
+@Service
 public class BookServiceImpl implements BookService {
 
-    BookDao dao = new BookDaoImpl();
+    @Autowired
+    private BookDao bookDaoImpl;
 
     @Override
     public List<Book> queryList(Book book) {
 
-        List<Book> bookList = dao.queryList(book);
+        List<Book> bookList = bookDaoImpl.queryList(book);
         for (Book vo : bookList){
             vo.setType(Const.BOOK_TYPE_MAP.get(vo.getType()));
         }
@@ -29,22 +33,28 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void insert(Book book) {
-        dao.insert(book);
+        bookDaoImpl.insert(book);
     }
 
     @Override
     public void updateById(Book book) {
-        dao.updateById(book);
+        bookDaoImpl.updateById(book);
     }
 
     @Override
     public Book queryById(long id) {
-        Book book = dao.queryById(id);
+        Book book = bookDaoImpl.queryById(id);
         return book;
     }
 
     @Override
     public void deleteById(long id) {
-        dao.deleteById(id);
+        bookDaoImpl.deleteById(id);
+    }
+
+    @Override
+    public List<Book> selectByUser(String user) {
+        List<Book> books = bookDaoImpl.selectByUser(user);
+        return books;
     }
 }

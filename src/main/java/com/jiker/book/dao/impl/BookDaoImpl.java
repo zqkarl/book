@@ -3,6 +3,7 @@ package com.jiker.book.dao.impl;
 import com.jiker.book.dao.BookDao;
 import com.jiker.book.util.JDBCUtil;
 import com.jiker.book.vo.Book;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.sql.*;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * 数据层，只负责与数据库的数据交互，将数据进行存储读取操作
  */
+@Repository
 public class BookDaoImpl implements BookDao {
 
     @Override
@@ -51,6 +53,48 @@ public class BookDaoImpl implements BookDao {
                         rs.getString("location"),
                         rs.getString("description")
                 );
+                bookList.add(vo);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //5 关闭连接
+            JDBCUtil.close(rs, ps, conn);
+        }
+        return bookList;
+    }
+
+    @Override
+    public List<Book> selectByUser(String user) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Book> bookList = new ArrayList<Book>();
+        try {
+            //1 加载数据库驱动  2 获取数据库连接
+            conn = JDBCUtil.getMysqlConn();
+            StringBuffer sql = new StringBuffer();
+            sql.append("SELECT book.*, record.id record_id FROM record left JOIN book on record.book_id = book.id WHERE record.person = '"+user+"'");
+
+            //3 操作数据库——查询一条数据记录
+            ps = conn.prepareStatement(sql.toString());
+            rs = ps.executeQuery();
+            //4 处理返回数据——将返回的一条记录封装到一个JavaBean对象
+            while (rs.next()) {
+                Book vo = new Book(rs.getLong("id"),
+                        rs.getString("number"),
+                        rs.getString("name"),
+                        rs.getString("author"),
+                        rs.getString("publishingHouse"),
+                        rs.getBigDecimal("price"),
+                        rs.getString("type"),
+                        rs.getInt("inventory"),
+                        rs.getInt("lendCount"),
+                        rs.getString("location"),
+                        rs.getString("description")
+                );
+                vo.setRecordId(rs.getLong("record_id"));
                 bookList.add(vo);
             }
 
