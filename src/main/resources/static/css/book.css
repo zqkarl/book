@@ -1,0 +1,77 @@
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, em, font, img, small, strong, b, u, i, s, dl, dt, dd, ol, ul, li, fieldset, form, label, input, table, tr, td{
+    margin: 0;
+    padding: 0;
+}
+body{background-color: #f4f4f4;color: #666;}
+ul li {
+    list-style: none;
+}
+.w {
+    width: 1200px;
+    margin: 30px auto;
+    background-color: #fff;
+    overflow: hidden;
+
+}
+header {
+    height: 55px;
+    line-height: 55px;
+    border-bottom: 2px solid #f4f4f4;
+}
+header .title{border-left:2px solid red;padding-left:10px;margin-left:20px;}
+.section {
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+}
+h1{
+   font-size:20px;
+   font-weight: normal;
+   padding:20px 0 20px 32px;
+}
+.form-list li{
+    margin-bottom:20px;
+    /*text-align: center;*/
+}
+.form-list input  {
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+}
+.form-list .label-box input,.form-list .label-box{
+    width:auto;
+    height:auto;
+    font-size:14px;
+    
+}
+.form-list .label-box{
+    margin-right:10px;
+}
+.section .form-list .label {
+   display: inline-block;
+   width: 100px;
+   height: 30px;
+   padding-right:5px;
+   text-align: right;
+   line-height: 30px;
+   font-size: 14px;
+   
+}
+.section select {
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+}
+.btn-group{width:150px;margin:30px auto;}
+.btn-group .submit{
+    margin-right:20px;
+}
+.btn {
+    width: 60px;
+    height: 30px;
+    background-color:#2a8cd7;
+    color: #fff;
+    border: none;
+    border-radius:4px;
+    cursor:pointer;
+}
+.btn:hover{background:#0f71bb;}
