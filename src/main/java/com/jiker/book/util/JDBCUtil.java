@@ -13,7 +13,7 @@ public class JDBCUtil {
     static {   //加载JDBCUtil类的时候调用
         pros = new Properties();
         try {
-            pros.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("resources/db.properties"));
+            pros.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

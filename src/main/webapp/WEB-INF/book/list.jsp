@@ -46,6 +46,38 @@
     <div class="list">
         <div class="list-bd">
             <!-- todo 在此处添加列表展示的html代码-->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <th width="18%">书名</th>
+                    <th width="5%">作者</th>
+                    <th width="10%">出版社</th>
+                    <th width="5%">价格</th>
+                    <th width="10%">类目</th>
+                    <th width="7%">库存总量</th>
+                    <th width="7%">借出总量</th>
+                    <th width="7%">剩余总量</th>
+                    <th width="12%">所在位置</th>
+                    <th width="9%">操作</th>
+                </tr>
+                <c:forEach items="${list}" var="item">
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.author}</td>
+                        <td>${item.publishingHouse}</td>
+                        <td>${item.price}</td>
+                        <td>${item.type}</td>
+                        <td>${item.inventory}</td>
+                        <td>${item.lendCount}</td>
+                        <td>${item.inventory - item.lendCount}</td>
+                        <td>${item.location}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath }/book/show?id=${item.id}">查看</a>
+                            <a href="${pageContext.request.contextPath }/book/queryById?id=${item.id}">|修改</a>
+                            <a href="${pageContext.request.contextPath }/book/deleteById?id=${item.id}">|删除</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
         </div>
     </div>
 </div>
