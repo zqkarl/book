@@ -9,4 +9,6 @@ public interface RecordDao {
     public void insert(Record record);
 
     public List<Record> selectAll();
+
+    public List<Record> query(Record record);
 }
