@@ -51,7 +51,7 @@
                         <td>${item.price}</td>
                         <td>${item.type}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath }/book/returnBook?id=${item.recordId}">还书</a>
+                            <a href="${pageContext.request.contextPath }/record/returnBook?id=${item.id}&user=${user}">还书</a>
                         </td>
                     </tr>
                 </c:forEach>

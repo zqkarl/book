@@ -66,7 +66,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> selectByUser(String user) {
+    public List<Book> selectUnreturnByUser(String user) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -75,8 +75,11 @@ public class BookDaoImpl implements BookDao {
             //1 加载数据库驱动  2 获取数据库连接
             conn = JDBCUtil.getMysqlConn();
             StringBuffer sql = new StringBuffer();
-            sql.append("SELECT book.*, record.id record_id FROM record left JOIN book on record.book_id = book.id WHERE record.person = '"+user+"'");
-
+            sql.append("SELECT book.*, record.id record_id FROM record left JOIN book on record.book_id = " +
+                    "book.id WHERE relate_id is NULL and record.type = 'BORROW'");
+            if(!StringUtils.isEmpty(user)){
+                sql.append(" and record.person = '").append(user).append("'");
+            }
             //3 操作数据库——查询一条数据记录
             ps = conn.prepareStatement(sql.toString());
             rs = ps.executeQuery();
@@ -154,7 +157,7 @@ public class BookDaoImpl implements BookDao {
             ps.setBigDecimal(5, book.getPrice());
             ps.setString(6, book.getType());
             ps.setInt(7, book.getInventory());
-            ps.setInt(8, 0);
+            ps.setInt(8, book.getLendCount());
             ps.setString(9, book.getLocation());
             ps.setString(10, book.getDescription());
             ps.setLong(11, book.getId());

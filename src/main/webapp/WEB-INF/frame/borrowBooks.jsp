@@ -22,7 +22,7 @@
 
 </head>
 <script type="text/javascript">
-        function toVaild(){
+        function toValid(){
             var name = document.getElementById("name").value;
             if(name == null || name == "" ){
                 msg = document.getElementById("nameMsg")
@@ -30,6 +30,7 @@
                 msg.style.color = 'red';
                 return false;
             }
+            alert("借书成功");
             return true;
         }
     </script>
@@ -45,12 +46,12 @@
                     <ul class="form-list">
                         <li>
                             <label class="label">借书人</label>
-                            <input type="text" id="name" name="name">
+                            <input type="text" id="name" name="person">
                             <span id="nameMsg"></span>
                         </li>
                         <li>
                             <label class="label">书名</label>
-                            <select name="type" >
+                            <select name="bookId" >
                                 <c:forEach items="${list}" var="item">
                                     <option value="${item.id}">${item.name}</option>
                                 </c:forEach>
@@ -61,7 +62,7 @@
                 </div>
                 <div class="btn-group">
                     <button class="btn submit" type="submit" onclick="return toValid(this.form)">确认</button>
-                    <a href="${pageContext.request.contextPath }/book/queryList">
+                    <a href="${pageContext.request.contextPath }/record/queryList">
                         <input type="button" value="取消" class="btn">
                     </a>
                 </div>

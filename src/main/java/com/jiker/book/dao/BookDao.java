@@ -16,5 +16,5 @@ public interface BookDao {
 
     public int deleteById(long id) ;
 
-    public List<Book> selectByUser(String user);
+    public List<Book> selectUnreturnByUser(String user);
 }

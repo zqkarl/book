@@ -6,6 +6,7 @@ import com.jiker.book.vo.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
@@ -19,7 +20,7 @@ public class BookController {
     @Autowired
     BookService bookServiceImpl;
 
-    @RequestMapping("queryList")
+    @RequestMapping(value = "queryList")
     public ModelAndView queryList(Book book) {
         List<Book> list = null;
         try{

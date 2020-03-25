@@ -11,6 +11,16 @@ public class Record {
     private String person; //借还书人
     private Timestamp time; //记录时间
 
+    public Long getRelateId() {
+        return relateId;
+    }
+
+    public void setRelateId(Long relateId) {
+        this.relateId = relateId;
+    }
+
+    private Long relateId; //对应的借还书记录
+
     public String getBookName() {
         return bookName;
     }

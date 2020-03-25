@@ -1,7 +1,6 @@
 package com.jiker.book.service.impl;
 
 import com.jiker.book.dao.BookDao;
-import com.jiker.book.dao.impl.BookDaoImpl;
 import com.jiker.book.service.BookService;
 import com.jiker.book.util.Const;
 import com.jiker.book.vo.Book;
@@ -54,7 +53,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> selectByUser(String user) {
-        List<Book> books = bookDaoImpl.selectByUser(user);
+        List<Book> books = bookDaoImpl.selectUnreturnByUser(user);
+        for (Book vo : books){
+            vo.setType(Const.BOOK_TYPE_MAP.get(vo.getType()));
+        }
         return books;
     }
 }
